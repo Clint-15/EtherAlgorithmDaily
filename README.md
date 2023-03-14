@@ -1,6 +1,4 @@
-# 算法
-
-# 异或（Swap）
+1. # 异或（Swap）
 
 前提：两个数位于不同的内存。如果是同一个数组，`i`和`j`两个数相同，则直接`异或`成`0`。
 
@@ -13,9 +11,9 @@ b = a ^ b;
 a = a ^ b;
 ```
 
-# 查找出现奇数次的数
+1. # 查找出现奇数次的数
 
-## 只有一个数出现奇数次，其他数均出现偶数次
+1. ## 只有一个数出现奇数次，其他数均出现偶数次
 
 ```Java
 int num = 0;
@@ -27,7 +25,7 @@ for (int i = 0; i < nums.length; i++) {
 System.out.println(num)
 ```
 
-## 只有两个数出现奇数次，其他数均出现偶数次
+1. ## 只有两个数出现奇数次，其他数均出现偶数次
 
 ```Java
 int num = 0;
@@ -48,11 +46,11 @@ for (int i = 0; i < nums.length; i++) {
 System.out.println(oneonly + " " + (oneonly ^ num));
 ```
 
-# 递归
+1. # 递归
 
-## 递归算法
+1. ## 递归算法
 
-### 无序数组L到R范围中求最大值（初识递归）
+1. ### 无序数组L到R范围中求最大值（初识递归）
 
 ```Java
 public static int process(int[] arr , int L, int R) {
@@ -68,7 +66,7 @@ public static int process(int[] arr , int L, int R) {
 }
 ```
 
-### 归并排序
+1. ### 归并排序
 
 ```Java
 public static void process(int[] arr, int l, int r) {
@@ -107,9 +105,9 @@ public static void merge(int[] arr, int L, int mid, int R) {
 }
 ```
 
-### 小和问题
+1. ### 小和问题
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=YzYyMTBiMjRhODc2MGVhMzI2Y2Q5M2U2NzU4NDNkMTdfQk1BQUU1WWo3cGxxU0lPNmZMUzhwZFlKb05vUjV4aTJfVG9rZW46Ym94Y25LT2lzM1AySE44aU5Vb1ZkTFJjN09mXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-167878402526512.assets)
 
 ```Java
 public static int smallSum(int[] arr, int l, int r) {
@@ -148,7 +146,7 @@ public static int merge(int[] arr, int l, int mid, int r) {
 }
 ```
 
-### 快排3.0
+1. ### 快排3.0
 
 ```Java
 /*
@@ -204,7 +202,7 @@ public static void swap(int[] arr, int l, int r){
 }
 ```
 
-### 堆排序（非递归）
+1. ### 堆排序（非递归）
 
 ```Java
 public static void heapSort(int[] arr) {
@@ -248,7 +246,7 @@ public static void heapify(int[] arr, int index, int heapSize) {
 }
 ```
 
-### 基数排序（桶排序）
+1. ### 基数排序（桶排序）
 
 ```Java
 public static void radixSort(int[] arr) {
@@ -308,13 +306,13 @@ public static int getDigit(int x, int d) {
 }
 ```
 
-## master 公式求解时间复杂度
+1. ## master 公式求解时间复杂度
 
 注意：
 
 使用master公式，必须保证子问题规模相同！
 
-### 定义
+1. ### 定义
 
 ```
 T(N) = a * T(N ``/ b``) + O(N ^ d)
@@ -325,13 +323,13 @@ T(N) = a * T(N ``/ b``) + O(N ^ d)
 - a：子问题被调用的次数；
 - O(N ^ d)：除子问题之外，剩下过程的时间复杂度。 
 
-### 求解时间复杂度：
+1. ### 求解时间复杂度：
 
 - `log(b)a < d`：`O(N ^ d)`；
 - `log(b)a = d`：`O((N ^ d) * logN)`；
 - `log(b)a > d`：`O(N ^ log(b)a)`；
 
-### 解释
+1. ### 解释
 
 刚好符合master公式进行求解：
 
@@ -342,68 +340,68 @@ T(N) = a * T(N ``/ b``) + O(N ^ d)
   - `T(N) = 2 * T(N ``/ 2``) + O(N)，(a = 2, b = 2, d = 1)`；
   - 时间复杂度：`O(N * logN)`；
 
-# 堆
+1. # 堆
 
-## 数组`arr[i]`在完全二叉树中的位置：
+1. ## 数组`arr[i]`在完全二叉树中的位置：
 
 - 左：`2 * i + 1`；
 - 右：`2 * i + 2`；
 - 根：`(i - 1) ``/ 2`；
 
-## 堆排序（具体代码见3.1.5）：
+1. ## 堆排序（具体代码见3.1.5）：
 
-1. ###  `heapInsert` 操作：
-
-1. 时间复杂度：O(N * logN)；
-2. 空间复杂度：O(1)；
-
- 描述：数组中一个数一个数的遍历，一个数一个数的放入完全二叉树中，生成“大根堆”。
-
-```Java
-public static void heapInsert(int[] arr, int index){
-    while(arr[index] > arr[(index - 1) / 2]) {
-        swap(arr, index, (index - 1) / 2);
-        index = (index - 1) / 2;
-    }
-}
-```
-
-1. ###  `heapInsert`操作优化：
-
-   1.   时间复杂度：O(N)；
-
-   1.   描述：数组中的所有数直接构成完全二叉树（此时树肯定不是大根堆），之后将树从下到上，从左到右依次对每个结点进行`heapify`操作；
-
-     for (int i = arr.length - 1; i >= 0; i--) {    heapify(arr, i, arr.length); }
-
-1. ###  `heapify`操作：
+   1. ###  `heapInsert` 操作：
 
    1. 时间复杂度：O(N * logN)；
    2. 空间复杂度：O(1)；
-   3. 描述：在已经生成的“大根堆”中，额外添加一个数字，保证添加新数字之后的完全二叉树仍旧是“大根堆”。
+
+    描述：数组中一个数一个数的遍历，一个数一个数的放入完全二叉树中，生成“大根堆”。
 
    ```Java
-   public static void heapify(int[] arr, int index, int heapSize) {
-       int left = index * 2 + 1;
-       
-       while (left < heapSize) {
-           int largest = left + 1 < heapsize && arr[left + 1] > arr[left] ? left + 1 : left;
-           largest = arr[largest] > arr[index] ? largest : index;
-           
-           if (largest = index) {
-               break;
-           }
-           
-           swap(arr, largest, index);
-           index = largest;
-           left = index * 2 + 1;
+   public static void heapInsert(int[] arr, int index){
+       while(arr[index] > arr[(index - 1) / 2]) {
+           swap(arr, index, (index - 1) / 2);
+           index = (index - 1) / 2;
        }
    }
    ```
 
-## Java语言提供的小根堆
+   1. ###  `heapInsert`操作优化：
 
-### 小根堆
+      1.   时间复杂度：O(N)；
+
+      1.   描述：数组中的所有数直接构成完全二叉树（此时树肯定不是大根堆），之后将树从下到上，从左到右依次对每个结点进行`heapify`操作；
+
+        for (int i = arr.length - 1; i >= 0; i--) {    heapify(arr, i, arr.length); }
+
+   1. ###  `heapify`操作：
+
+      1. 时间复杂度：O(N * logN)；
+      2. 空间复杂度：O(1)；
+      3. 描述：在已经生成的“大根堆”中，额外添加一个数字，保证添加新数字之后的完全二叉树仍旧是“大根堆”。
+
+      ```Java
+      public static void heapify(int[] arr, int index, int heapSize) {
+          int left = index * 2 + 1;
+          
+          while (left < heapSize) {
+              int largest = left + 1 < heapsize && arr[left + 1] > arr[left] ? left + 1 : left;
+              largest = arr[largest] > arr[index] ? largest : index;
+              
+              if (largest = index) {
+                  break;
+              }
+              
+              swap(arr, largest, index);
+              index = largest;
+              left = index * 2 + 1;
+          }
+      }
+      ```
+
+1. ## Java语言提供的小根堆
+
+1. ### 小根堆
 
 ```Java
 PriorityQueue<Integer> heap = new PriorityQueue<>();
@@ -426,7 +424,7 @@ while(!heap.isEmpty()) {
 
 Java提供的小根堆中，相当于一个黑盒，只能一个一个数的放，一个一个数的取。改变其中某个数之后，就可能不是小根堆了（不支持`heapInsert`，`heapify`操作）。建议自己手写小根堆。
 
-### 比较器（实质是重载比较运算符）（小根堆改成大根堆）
+1. ### 比较器（实质是重载比较运算符）（小根堆改成大根堆）
 
 ```Java
 public static class AComp implements Comparator<Integer>{
@@ -464,9 +462,9 @@ public static void heapTest() {
 */
 ```
 
-## 堆排序题目
+1. ## 堆排序题目
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=NzA4ZWY0ZmI1OWYxMzVhZmM2YzVjOGZiNjg3YzRhY2FfeXhMaVZBQVFsME1ER0p1aFJZY2RrZ0g2UWgzNnM4eDNfVG9rZW46Ym94Y25yY1ZzcFpVSlVvb3l1emJCc1RVandlXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252481.assets)
 
 ```Java
 public static void sortArrayDistanceLessK(int[] arr, int k) {
@@ -488,7 +486,7 @@ public static void sortArrayDistanceLessK(int[] arr, int k) {
 }
 ```
 
-## 一个数据流中，随时可以取得中位数
+1. ## 一个数据流中，随时可以取得中位数
 
 1. 构建一个大根堆、一个小根堆；
 2. 第一个数字进大根堆；
@@ -498,20 +496,20 @@ public static void sortArrayDistanceLessK(int[] arr, int k) {
 
  结果：较小的`n/2`个数在大根堆，交大的`n/2`个数在小根堆；
 
-# 排序
+1. # 排序
 
-## 时间复杂度为O(N ^ 2)：
+1. ## 时间复杂度为O(N ^ 2)：
 
-- 冒泡排序：最大值依次往后冒泡；稳定；
-- 选择排序：从`0-N`中选一个最小值放在`arr[0]`，从`1-N`中选一个最小值放在`arr[1]`；不稳定；
-- 插入排序：0-1有序，0-2有序，0-3有序， ...， 0-N有序。后面的元素依次插入到前面；稳定；
+   - 冒泡排序：最大值依次往后冒泡；稳定；
+   - 选择排序：从`0-N`中选一个最小值放在`arr[0]`，从`1-N`中选一个最小值放在`arr[1]`；不稳定；
+   - 插入排序：0-1有序，0-2有序，0-3有序， ...， 0-N有序。后面的元素依次插入到前面；稳定；
 
-## 时间复杂度为O(N * logN)：
+1. ## 时间复杂度为O(N * logN)：
 
-- 归并排序（递归）：两个有序的部分合并成一个（`merge`操作）；稳定；
-- 快排3.0：`partition`操作（荷兰国旗问题）；不稳定；
-- 堆排序：`heapInsert`操作形成大根堆，根节点和最后一个节点交换，`heapSize--`，交换之后的堆从上到下做`heapify`操作；不稳定；
-- 计数排序、基数排序：稳定；
+   - 归并排序（递归）：两个有序的部分合并成一个（`merge`操作）；稳定；
+   - 快排3.0：`partition`操作（荷兰国旗问题）；不稳定；
+   - 堆排序：`heapInsert`操作形成大根堆，根节点和最后一个节点交换，`heapSize--`，交换之后的堆从上到下做`heapify`操作；不稳定；
+   - 计数排序、基数排序：稳定；
 
 |                  | 时间复杂度    | 空间复杂度 | 稳定性 |
 | ---------------- | ------------- | ---------- | ------ |
@@ -522,7 +520,7 @@ public static void sortArrayDistanceLessK(int[] arr, int k) {
 | 快排3.0          | `O(N * logN)` | `O(logN)`  | ×      |
 | 堆排序           | `O(N * logN)` | `O(1)`     | ×      |
 
-## 注意：
+1. ## 注意：
 
 - 归并排序的空间复杂度可以做到O(1)，但是非常难，同时又失去了稳定性，还不如使用堆排序；
 - 原地归并排序会导致时间复杂度变成O(N ^ 2)，还不如使用插入排序；
@@ -531,29 +529,26 @@ public static void sortArrayDistanceLessK(int[] arr, int k) {
 
 推荐使用快排3.0！
 
-## 题目：
+1. ## 题目：
 
 基数放在数组左边，偶数放在数组右边，要求原始的次序不变，要求时间复杂度O(N)，空间复杂度O(1)；
 
 可以，但是非常难，这和快排中的`partition`过程是一个道理，想要保证稳定性，经典的快排做不到。请面试官教教我！
 
-## 工程上对排序的改进：
+1. ## 工程上对排序的改进：
 
 1. 利用时间复杂度O(N * log N)和O(N ^ 2)的优势；
-
 2. 稳定性考虑；
-
 3. 综合排序：快排中使用插入排序（快排的子递归中，数据样本量小于60时，直接进行插入排序）；
-
 4. Java提供的`Array.sort()`：系统自动判定排序的内容是否为基础类型，是基础类型，用归并，不是则用快排；为了保证稳定性。
 
-   # 哈希表、有序表
+1. # 哈希表、有序表
 
-   ## 区别
+1. ## 区别
 
 有序表的Key按照顺序组织，哈希表的Key完全不组织；
 
-## 哈希表（`Key`无序）
+1. ## 哈希表（`Key`无序）
 
 - 哈希表的任何增删改查操作，其时间复杂度都认为是常数级别；
 - 对于基础类型（`int`、`String`），哈希表内部按照值传递，占用空间就等于变量所占用的空间；对于`Node`、`List`类型，哈希表按照引用传递，`Key`一律占8字节（直接记录内存地址）；
@@ -561,7 +556,7 @@ public static void sortArrayDistanceLessK(int[] arr, int k) {
 - 哈希表对基本数据类型，使用值传递；
 - 哈希表的key为`node`、`student`等，必须提供比较器，`Key`使用引用传递，将内存地址拷贝到哈希表中作为`key`，此时的`key`一律8字节；
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNmNzc5YTY4MGNlZGViZjk4MjQxMTU3ZjlhNjA1ZGVfRGZpVDNCTVQ0OHN1Y3NOYTlOMDJCbE9yc0pyMGlvb1RfVG9rZW46Ym94Y25QbDgzYTl5aGFKQnFId2RMSGJpNHFmXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252482.assets)
 
 1. ### HashSet
 
@@ -597,7 +592,7 @@ map.get(4);    // null
 map.containsKey(1);    // true
 ```
 
-## 有序表（`Key`有序）
+1. ## 有序表（`Key`有序）
 
 - 只有`Key`，就是`Set`结构；
 - 既有`Key`又有`Value`，就是`Map`结构；
@@ -605,7 +600,7 @@ map.containsKey(1);    // true
 - 红黑树、AVL数、size-balance-tree、跳表等都属于有序表，只是底层实现逻辑不同；
 - key为`node`、`student`等，必须提供比较器，`Key`使用引用传递，将内存地址拷贝到哈希表中作为`key`，此时的`key`一律8字节；
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=YzU0OTdlYzE2NWIxOTY5M2QwZTg2NGFkZjJkMzA4ZDFfODd5RjhLSWtqZFZyQVRkbmRqSnJnb3g3NFo5a2xwQ1VfVG9rZW46Ym94Y250WUl4REZyUmFmTjVCM1VhMU1mVXhjXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252493.assets)
 
 ```Java
 TreeMap<Integer, String> treeMap = new TreeMap<>();
@@ -623,15 +618,14 @@ treeMap.floorKey(4);   // 所有<=4的key中，离4最近的Key；
 treeMap.ceilingKey(4); // 所有>=4的key中，离4最近的key；
 ```
 
-# 链表
+1. # 链表
 
 1. ## 面试
 
-2. 笔试：不需要过于重视空间复杂度，一切为了时间复杂度；
+1. 笔试：不需要过于重视空间复杂度，一切为了时间复杂度；
+2. 面试：时间复杂度仍然放在第一位，但一定要找到节省空间复杂度的方法；
 
-3. 面试：时间复杂度仍然放在第一位，但一定要找到节省空间复杂度的方法；
-
-   # 链表结构
+1. ## 链表结构
 
 1. 单链表
    1. ```Java
@@ -656,7 +650,6 @@ treeMap.ceilingKey(4); // 所有>=4的key中，离4最近的key；
           }
       }
       ```
-   
 2. 双链表
    1. ```Java
       class Node<V> {
@@ -666,9 +659,9 @@ treeMap.ceilingKey(4); // 所有>=4的key中，离4最近的key；
       }
       ```
 
-   ## 题目
-   
-   ### 反转单链表
+1. ## 题目
+
+1. ### 反转单链表
 
 ```Java
 public static Node reverse(Node head) {
@@ -685,7 +678,7 @@ public static Node reverse(Node head) {
 }
 ```
 
-### 单链表排序
+1. ### 单链表排序
 
 将一个链表，小于某个数的放左边，等于某个数的放中间，大于某个数的放右边
 
@@ -806,9 +799,9 @@ public static Node listPartition2(Node head, int pivot) {
 }
 ```
 
-### 复制含有随机指针节点的链表
+1. ### 复制含有随机指针节点的链表
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=NjdjYTczYjBkNzM3OGU3MTlmZjI4ZDk0YWRiZTE3NWNfanhVWWF5RHVIMmJPRE5IMEZaUUhWTnNQa2hOdnFNdTVfVG9rZW46Ym94Y240b1p1cE1BdUpaVHlsOTBwWDZqTVdoXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252494.assets)
 
 - 方法一：（哈希表）
   - ```Java
@@ -914,7 +907,7 @@ public static Node listPartition2(Node head, int pivot) {
     }
     ```
 
-### 判断单链表是否回文
+1. ### 判断单链表是否回文
 
 方法一：（使用栈）
 
@@ -1028,7 +1021,7 @@ public static boolean isPalindrome3(Node head) {
 }
 ```
 
-### 两个单链表相交问题
+1. ### 两个单链表相交问题
 
 1. #### 前置问题：判断一个链表有没有环，有环则输出入环结点。
 
@@ -1066,7 +1059,7 @@ public static Node getloopNode(Node head) {
 }
 ```
 
-#### 两个单链表相交问题
+1. #### 两个单链表相交问题
 
 判断两个单链表是否相交可能的情况；
 
@@ -1074,7 +1067,7 @@ public static Node getloopNode(Node head) {
 2. 连个有环单链表是否相交；
 3. 不存在一个有环单链表和一个无环单链表相交。
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=MDJhYmFkOWU2ZjBjOTE1Y2IxZDk5NTI4OGVhN2RmMDNfbGtWVENVSnVnOHR0Y2lISWVaaUIydkRGeEVhMjd6S2ZfVG9rZW46Ym94Y243bjZacHNaZGFqOG0wQTlrTG1YYVJjXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252495.assets)
 
 ```Java
 // 两个无环单链表是否相交
@@ -1192,11 +1185,11 @@ public static Node getIntersectNode(Node head1, Node head2) {
 }
 ```
 
-# 树
+1. # 树
 
-## 树的遍历
+1. ## 树的遍历
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=NDMyYzI3NjEwOWQxMzQzNzAwMGU1ZWVhZmVlZGY4M2RfMUxlSTJyUEllbHZQV1hYVDB1Yk16UlRmT1BrSmdwaTFfVG9rZW46Ym94Y25EVFFKem9FVEZuaDRBUldKbUZlVUViXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252496.assets)
 
 1. ### 递归序演示
 
@@ -1211,7 +1204,7 @@ public static void f(Node head) {
 }
 ```
 
-### 递归方式
+1. ### 递归方式
 
 1. 递归序：`1 ``2 ``4 4 4 ``2 ``5 5 5 ``2 ``1 ``3 ``6 6 6 ``3 ``7 7 7 ``3 ``1`；
 2. 先序（头、左、右）（递归序中第一次遇到的就打印）：`1 2 4 5 3 6 7`；
@@ -1260,7 +1253,7 @@ public class PreinPosTraversal {
 }
 ```
 
-### 非递归方式（使用栈，面试中常考）
+1. ### 非递归方式（使用栈，面试中常考）
 
 1. #### 先序遍历
 
@@ -1415,7 +1408,7 @@ public static void posOrderUnRecur1(Node head) {
 }
 ```
 
-### 树的直观打印
+1. ### 树的直观打印
 
 ```Java
 package les05.algorithm;
@@ -1476,9 +1469,9 @@ public class PrintBinaryTree {
 }
 ```
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=Yzc2Yzc5NWM2M2NkNGIwZjQwOGZjMzBiMmMyZTEwNDBfcFVlTWRxS1BRZjVaYnliQ2ZDSzZmM280ZVNtQUpXbE9fVG9rZW46Ym94Y25ZSlVkYmYyUmtBcW52WW1CT2l1MGtkXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252497.assets)
 
-### 宽度优先遍历
+1. ### 宽度优先遍历
 
 1. #### 二叉树的宽度优先遍历
 
@@ -1514,7 +1507,7 @@ public static void w(Node head) {
 }
 ```
 
-#### 求一棵二叉树的最大宽度
+1. #### 求一棵二叉树的最大宽度
 
 - 方法一：（哈希表记录当前节点所在的层）
 
@@ -1559,7 +1552,7 @@ public static void treeMaxWidth(Node head) {
 
 - 方法二：（队列）
 
-### 是否为搜索二叉树
+1. ### 是否为搜索二叉树
 
 搜索二叉树：每一棵子树，左树的节点都比它小，右树的结点都比它大。
 
@@ -1682,7 +1675,7 @@ public static void treeMaxWidth(Node head) {
     }
     ```
 
-### 是否为完全二叉树（使用宽度优先遍历）
+1. ### 是否为完全二叉树（使用宽度优先遍历）
 
 思路：
 
@@ -1727,7 +1720,7 @@ public static boolean(Node head) {
 }
 ```
 
-### 是否为满二叉树
+1. ### 是否为满二叉树
 
 最大深度为l，结点个数为n，则n = (2 ^ l) - 1；
 
@@ -1770,7 +1763,7 @@ public static boolean(Node head) {
     }
     ```
 
-### 是否为平衡二叉树
+1. ### 是否为平衡二叉树
 
 每一棵子树，左树的高度和右树的高度差不超过1；
 
@@ -1804,7 +1797,7 @@ public static ReturnType process(Node x) {
 }
 ```
 
-### 最低公共祖先
+1. ### 最低公共祖先
 
 在一个二叉树中，给定两个结点，找出这两个结点的最低公共祖先。
 
@@ -1854,9 +1847,9 @@ public static ReturnType process(Node x) {
     }
     ```
 
-# 图
+1. # 图
 
-## 图的表示
+1. ## 图的表示
 
 - 点
   - ```Java
@@ -1906,7 +1899,7 @@ public static ReturnType process(Node x) {
     }
     ```
 
-## 图的转化
+1. ## 图的转化
 
 例如：
 
@@ -1981,7 +1974,7 @@ public static ReturnType process(Node x) {
       }
       ```
 
-   ## 宽度优先遍历
+1. ## 宽度优先遍历
 
 ```Java
 public static void bsf(Node node) {
@@ -2010,7 +2003,7 @@ public static void bsf(Node node) {
 }
 ```
 
-## 深度优先遍历
+1. ## 深度优先遍历
 
 ```Java
 public static void dfs(Node node) {
@@ -2041,7 +2034,7 @@ public static void dfs(Node node) {
 }
 ```
 
-## 拓扑排序
+1. ## 拓扑排序
 
 ```Java
 public static List<Node> topologySort(Grapg grapg) {
@@ -2072,7 +2065,7 @@ public static List<Node> topologySort(Grapg grapg) {
 }
 ```
 
-## Kruskal算法
+1. ## Kruskal算法
 
 要求：无向图，生成最小生成树
 
@@ -2207,25 +2200,22 @@ public class Kruskal {
 }
 ```
 
-## Prim算法
+1. ## Prim算法
 
-# 贪心
+1. # 贪心
 
-## 笔试过程解题思路
+1. ## 笔试过程解题思路
 
 1. 实现一个不依靠贪心策略的算法X，可以直接暴力求解；
-
 2. 脑补出贪心策略A、贪心策略B...；
-
 3. 用算法X和对数器来验证每一个贪心策略，用实验的方式得知那个贪心策略的正确性；
-
 4. 不要去纠结贪心策略的证明。
 
-   ## 会议时间安排问题
+1. ## 会议时间安排问题
 
 会议结束时间早的先安排
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=NmFlMWZjNTBjNjAzNTY5YjdhYzE5MWIxYTY0OTllMTlfTnBiTGN6TVpNOWJtRU9EWERKMjJhdEdROUhYWVg2TnZfVG9rZW46Ym94Y245RXJJOWRKS2xnZTRFTGt3ZFBDZkxnXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252498.assets)
 
 ```Java
 public static class Program {
@@ -2261,7 +2251,7 @@ public static int bestArrange(Program[] programs, int timePoint) {
 }
 ```
 
-## 拼接字符串生成最小字典序问题
+1. ## 拼接字符串生成最小字典序问题
 
 str1和`str2`两个字符串结合，比较`str1 + str2`和`str2 + str1`两个合并后的字符串字典序的大小，小的放在前面。
 
@@ -2291,7 +2281,7 @@ public static String lowestLexicography(String[] strs) {
 }
 ```
 
-## 金条切割问题（哈夫曼编码问题）
+1. ## 金条切割问题（哈夫曼编码问题）
 
 ```Java
 public static int lessMoney(int[] arr) {
@@ -2313,9 +2303,9 @@ public static int lessMoney(int[] arr) {
 }
 ```
 
-## 项目分配问题（串行）
+1. ## 项目分配问题（串行）
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=ODI0ZjhhNTc3M2U5N2UxMTNiYTYyZTJkY2JlZmQ3ODdfWTNxYjk5ZEdzV1ExbDgyYUtLbUl2aVFSZGdvZnFxSUtfVG9rZW46Ym94Y25jYlpEcUQ5alBuckN3Z0gxNGYxS09jXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-16787840252499.assets)
 
 ```Java
 public class IPO {
@@ -2379,7 +2369,7 @@ public class IPO {
 }
 ```
 
-## N皇后问题
+1. ## N皇后问题
 
 时间复杂度：O(N ^ N)
 
@@ -2436,7 +2426,7 @@ public class NQueens {
 }
 ```
 
-# Dijkstra
+1. # Dijkstra
 
 ```Java
 // 改进后算法
@@ -2473,9 +2463,9 @@ public static class NodeHeap {
 }
 ```
 
-# 暴力递归
+1. # 暴力递归
 
-## Hanoi
+1. ## Hanoi
 
 ```Java
 public static void hanoi(int n) {
@@ -2495,7 +2485,7 @@ public static void func(int n, String start, String end, String other) {
 }
 ```
 
-## 打印一个字符串的全部子序列（子序列可以无序）
+1. ## 打印一个字符串的全部子序列（子序列可以无序）
 
 ```Java
 public static void printAllSubsquenceNew(String str) {
@@ -2519,7 +2509,7 @@ public static void process(char[] str, int i) {
 }
 ```
 
-## 打印一个字符串的全排列（考虑重复问题）
+1. ## 打印一个字符串的全排列（考虑重复问题）
 
 ```Java
 public static void process(char[] str, int i, ArrayList<String> res) {
@@ -2540,7 +2530,7 @@ public static void process(char[] str, int i, ArrayList<String> res) {
 }
 ```
 
-## 纸牌分数最大问题
+1. ## 纸牌分数最大问题
 
 ```Java
 public static int win(int[] arr) {
@@ -2575,7 +2565,7 @@ public static int s(int[] arr, int l, int r) {
 }
 ```
 
-## 栈逆序问题
+1. ## 栈逆序问题
 
 给你一个栈，请你逆序这个栈，不能申请额外的数据结构，只能使用递归。
 
@@ -2606,9 +2596,9 @@ public class ReverseStackUsingRecursive {
 }
 ```
 
-## 数字转化为字符问题
+1. ## 数字转化为字符问题
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=NTFhMWMzN2Y1YWE1MmMzZjliNzVlNjUyMmYzNjUyNjZfS1NZNWtEbnRFM3lreXVTNG1QUjhzOUowWUNGZ21RYllfVG9rZW46Ym94Y25lOTQ4cDE3M3VVc3RyQ29Wbkd3cHJlXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-167878402524910.assets)
 
 ```Java
 public class ConverToLetterString {
@@ -2651,9 +2641,9 @@ public class ConverToLetterString {
 
  
 
-## 装载价值最多问题
+1. ## 装载价值最多问题
 
-![img](https://lmc4r7rzao.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjViNTU5MGZiNGIxYmM4MDJlZDU4NTUxZWZjNGEzMDdfQXhkNGpQeE1Nbmp4TFNpR0o2M29aNVBPRjd3MGc5akhfVG9rZW46Ym94Y25XNG9rS3ZkSWNuSE84WUp1dTRnelphXzE2Nzg0MzIwMTA6MTY3ODQzNTYxMF9WNA)
+![img](README.assets/-167878402524911.assets)
 
 ```Java
 public class Knapsack {
@@ -2673,7 +2663,7 @@ public class Knapsack {
 }
 ```
 
-## 象棋马走日问题
+1. ## 象棋马走日问题
 
 1. 递归
 
@@ -2736,7 +2726,7 @@ public static int getValue(int[][][] dp, int row, int col, int step) {
 }
 ```
 
-## Bob活下来的概率问题
+1. ## Bob活下来的概率问题
 
 ```Java
 // n * m 的区域，Bob在(row, col)位置，走rest步之后获得的生存方法数
@@ -2766,7 +2756,7 @@ public static long process(int n, int m, int row, int rest) {
 }
 ```
 
-## 货币方法数问题
+1. ## 货币方法数问题
 
 给定一个数组，数组中所有的数为正数，每个位置的值代表货币的面值，每种面值的货币任意张。求组成一定钱数的方法数。
 
@@ -2844,7 +2834,7 @@ public static int wayNew2(int[] arr, int aim) {
 }
 ```
 
-## 0-1背包
+1. ## 0-1背包
 
 - 非递归
 
@@ -2892,7 +2882,7 @@ public static int process(int[] w, int[] v, int n, int V) {    // n:物品数量
 }
 ```
 
-## 总结
+1. ## 总结
 
 暴力递归改动态规划：
 
