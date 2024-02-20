@@ -7,6 +7,7 @@ public class SortArrayDistanceLessK {
     public static void sortArrayDistanceLessK(int[] arr, int k) {
         PriorityQueue<Integer> heap = new PriorityQueue<>();
         int index = 0;
+        
         for (; index <= Math.min(arr.length - 1, k); index++) {
             heap.add(index);
         }
